@@ -1,0 +1,142 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url = env("DATABASE_URL")
+}
+
+enum Role {
+  TEACHER
+  COUNSELOR
+  ADMIN
+}
+enum Mood {
+  TERRIBLE
+  LOW
+  NEUTRAL
+  GOOD
+  GREAT
+}
+enum AppointmentStatus {
+  PENDING
+  CONFIRMED
+  DECLINED
+  RESCHEDULED
+  COMPLETED
+  CANCELLED
+}
+
+model User {
+  id String @id @default(cuid())
+  name String
+  email String @unique
+  passwordHash String?
+  role Role @default(TEACHER)
+  avatarUrl String?
+  googleId String? @unique
+  refreshToken String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  teacher Teacher?
+  counselor Counselor?
+  admin Admin?
+  journals Journal[]
+  moods MoodEntry[]
+  messages ChatMessage[]
+  notifications Notification[]
+}
+model Teacher {
+  id String @id @default(cuid())
+  userId String @unique
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  departmentId String?
+  department Department? @relation(fields: [departmentId], references: [id])
+  stressScore Int @default(0)
+  wellnessScore Int @default(70)
+  burnoutRisk Int @default(0)
+  appointments Appointment[]
+}
+model Counselor {
+  id String @id @default(cuid())
+  userId String @unique
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  specialty String
+  bio String?
+  appointments Appointment[]
+}
+model Admin {
+  id String @id @default(cuid())
+  userId String @unique
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+model Department {
+  id String @id @default(cuid())
+  name String @unique
+  teachers Teacher[]
+  createdAt DateTime @default(now())
+}
+model MoodEntry {
+  id String @id @default(cuid())
+  userId String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  mood Mood
+  score Int
+  note String?
+  createdAt DateTime @default(now())
+  @@index([userId, createdAt])
+}
+model Journal {
+  id String @id @default(cuid())
+  userId String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title String
+  content String
+  sentiment String?
+  emotions String[]
+  stressScore Int?
+  aiSuggestion String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@index([userId, createdAt])
+}
+model Appointment {
+  id String @id @default(cuid())
+  teacherId String
+  teacher Teacher @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  counselorId String
+  counselor Counselor @relation(fields: [counselorId], references: [id], onDelete: Cascade)
+  scheduledAt DateTime
+  duration Int @default(45)
+  note String?
+  status AppointmentStatus @default(PENDING)
+  createdAt DateTime @default(now())
+  @@index([teacherId, scheduledAt])
+  @@index([counselorId, scheduledAt])
+}
+model ChatMessage {
+  id String @id @default(cuid())
+  userId String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role String
+  content String
+  createdAt DateTime @default(now())
+  @@index([userId, createdAt])
+}
+model Notification {
+  id String @id @default(cuid())
+  userId String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title String
+  body String
+  read Boolean @default(false)
+  createdAt DateTime @default(now())
+}
+model Report {
+  id String @id @default(cuid())
+  name String
+  period String
+  data Json
+  createdAt DateTime @default(now())
+}
