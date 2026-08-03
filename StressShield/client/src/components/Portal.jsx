@@ -10,9 +10,13 @@ import {
   MessageCircle,
   NotebookPen,
   Settings,
+  Sun,
+  Moon,
   Wind,
+  Sparkles,
 } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
+import { useTheme } from '../contexts/ThemeContext';
 import Brand from './Brand';
 
 const NAV_LINKS = [
@@ -21,11 +25,13 @@ const NAV_LINKS = [
   ['/journal', NotebookPen, 'Daily journal'],
   ['/chat', MessageCircle, 'AI support'],
   ['/meditation', Wind, 'Meditation'],
+  ['/unwind', Sparkles, 'Unwind'],
   ['/appointments', CalendarDays, 'Counselor sessions'],
 ];
 
 export default function Portal({ children, title, subtitle }) {
   const { user, logout } = useAuth();
+  const { theme, toggleTheme } = useTheme();
   const go = useNavigate();
 
   return (
@@ -39,7 +45,7 @@ export default function Portal({ children, title, subtitle }) {
             className={({ isActive }) => 'menu-item ' + (isActive ? 'active' : '')}
             to={url}
           >
-            <Icon size={18} />
+            <Icon size={17} />
             <span>{label}</span>
           </NavLink>
         ))}
@@ -48,7 +54,7 @@ export default function Portal({ children, title, subtitle }) {
           <>
             <div className="menu-label">Organization</div>
             <NavLink className="menu-item" to="/admin">
-              <BarChart3 size={18} />
+              <BarChart3 size={17} />
               <span>School insights</span>
             </NavLink>
           </>
@@ -56,9 +62,17 @@ export default function Portal({ children, title, subtitle }) {
 
         <div className="sidebar-bottom">
           <NavLink className="menu-item" to="/settings">
-            <Settings size={18} />
+            <Settings size={17} />
             <span>Settings</span>
           </NavLink>
+          <button
+            className="menu-item"
+            onClick={toggleTheme}
+            style={{ border: 0, background: 'transparent', width: '100%', display: 'flex', alignItems: 'center', gap: 12, padding: '10px 12px', borderRadius: 10, color: 'var(--ink-soft)', fontWeight: 500, fontSize: '0.92rem', cursor: 'pointer', flexShrink: 0 }}
+          >
+            {theme === 'light' ? <Moon size={17} /> : <Sun size={17} />}
+            <span>{theme === 'light' ? 'Dark mode' : 'Light mode'}</span>
+          </button>
           <button
             className="menu-item"
             style={{ border: 0, background: 'transparent', width: '100%' }}
@@ -67,7 +81,7 @@ export default function Portal({ children, title, subtitle }) {
               go('/');
             }}
           >
-            <LogOut size={18} />
+            <LogOut size={17} />
             <span>Sign out</span>
           </button>
           <div className="user-chip">
@@ -96,7 +110,7 @@ export default function Portal({ children, title, subtitle }) {
             <button className="iconbtn">
               <Bell size={18} />
             </button>
-            <button className="btn accent" onClick={() => go('/mood')}>
+            <button className="btn" onClick={() => go('/mood')}>
               Check in <Heart size={15} />
             </button>
           </div>
@@ -106,3 +120,4 @@ export default function Portal({ children, title, subtitle }) {
     </div>
   );
 }
+

@@ -1,5 +1,6 @@
 ﻿import { Router } from 'express';
-import { AppointmentStatus } from '@prisma/client';
+import pkg from '@prisma/client';
+const { AppointmentStatus } = pkg;
 import { z } from 'zod';
 import prisma from '../utils/prisma.js';
 import { requireAuth, requireRole } from '../middlewares/auth.js';

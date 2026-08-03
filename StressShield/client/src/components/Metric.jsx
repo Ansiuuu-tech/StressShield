@@ -12,3 +12,4 @@ export default function Metric({ icon: Icon, label, value, note }) {
     </div>
   );
 }
+

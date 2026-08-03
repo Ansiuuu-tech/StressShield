@@ -1,183 +1,171 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Activity, ArrowRight, MessageCircle, Sparkles, Sun, Users, Heart } from 'lucide-react';
+import {
+  ArrowRight,
+  Sparkles,
+  Sun,
+  Activity,
+} from 'lucide-react';
 import Brand from '../components/Brand';
-import FeatureIcon from '../components/FeatureIcon';
+import StickyHeader from '../components/StickyHeader';
+
+const FEATURES = [
+  {
+    label: 'Mood',
+    title: 'Daily check-ins',
+    desc: 'Simple, private check-ins turn how you feel into useful patterns.',
+    image: 'https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=800&q=80', // journal/notebook, warm light, hands writing
+    to: '/mood',
+  },
+  {
+    label: 'Support',
+    title: 'AI companion',
+    desc: 'A grounded, always-available conversation partner trained for school life.',
+    image: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80', // calm laptop/phone conversation scene, no visible face
+    to: '/chat',
+  },
+  {
+    label: 'Care',
+    title: 'Counselor sessions',
+    desc: 'Confidential sessions with people who understand the work you do.',
+    image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=800&q=80', // warm two-person conversation, supportive setting
+    to: '/appointments',
+  },
+];
 
 export default function Landing() {
   return (
-    <div className="landing">
-      <div className="orb one" />
-      <div className="orb two" />
+    <div className="landing" style={{ scrollSnapType: 'y mandatory', height: '100vh', overflowY: 'auto', msOverflowStyle: 'none', scrollbarWidth: 'none' }}>
+      <div className="glow warm" style={{ width: 520, height: 520, top: -160, right: -140 }} />
+      <div className="glow cool" style={{ width: 460, height: 460, top: 520, left: -180 }} />
+      <div className="glow mint" style={{ width: 400, height: 400, bottom: -140, right: 120 }} />
 
-      <nav className="nav">
-        <Brand />
-        <div className="navlinks">
-          <a href="#features">How it works</a>
-          <a href="#support">Support</a>
-          <a href="#pricing">For schools</a>
-        </div>
-        <div className="nav-actions">
-          <Link to="/login" className="btn light">
-            Sign in
-          </Link>
-          <Link to="/register" className="btn">
-            Start feeling better <ArrowRight size={15} />
-          </Link>
-        </div>
-      </nav>
+      <StickyHeader />
 
-      <main>
-        {/* Hero */}
-        <section className="hero">
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="eyebrow">
-              <Sparkles size={13} /> Wellness, designed for educators
-            </span>
-            <h1>
-              Teaching is demanding.
-              <br />
-              <em>You don't have to carry it alone.</em>
-            </h1>
-            <p>
-              A private, thoughtful place to understand your wellbeing, build resilient habits, and
-              get support before stress becomes burnout.
-            </p>
-            <div className="hero-actions">
-              <Link className="btn" to="/register">
-                Begin your check-in <ArrowRight size={16} />
-              </Link>
-              <a className="btn light" href="#features">
-                Explore StressShield
-              </a>
-            </div>
-            <div className="hero-note">
-              Free for individual educators · Built with privacy at its core
-            </div>
-          </motion.div>
-
-          <motion.div
-            className="hero-art"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7 }}
-          >
-            <div className="wellness-card">
-              <div className="pulse">
-                <Heart size={25} />
-              </div>
-              <b style={{ display: 'block', marginTop: 15 }}>Your wellbeing, today</b>
-              <small className="muted">A gentle check-in can make a difference.</small>
-              <div className="card-line green" />
-              <div className="card-line" />
-              <div className="card-line" style={{ width: '78%' }} />
-            </div>
-            <div className="float-pill">✦ You're making space for you</div>
-          </motion.div>
-        </section>
-
-        {/* Stats */}
-        <section className="stats">
-          <div className="stat">
-            <strong>84%</strong>
-            <span>feel more supported</span>
-          </div>
-          <div className="stat">
-            <strong>12 min</strong>
-            <span>average daily check-in</span>
-          </div>
-          <div className="stat">
-            <strong>4.9/5</strong>
-            <span>educator rating</span>
-          </div>
-          <div className="stat">
-            <strong>100%</strong>
-            <span>private by default</span>
-          </div>
-        </section>
-
-        {/* Features */}
-        <section id="features" className="section">
-          <div className="section-heading">
-            <span className="eyebrow">Made for your real day</span>
-            <h2>Small moments of care. Lasting support.</h2>
-            <p>
-              StressShield meets you between classes, after hard conversations, and whenever the
-              weight of the work follows you home.
-            </p>
-          </div>
-          <div className="grid3">
-            <article className="feature">
-              <FeatureIcon>
-                <Activity size={21} />
-              </FeatureIcon>
-              <h3>Know your patterns</h3>
-              <p>
-                Simple daily check-ins turn feelings into useful insight—without making wellness
-                another task.
-              </p>
-            </article>
-            <article className="feature">
-              <FeatureIcon>
-                <MessageCircle size={21} />
-              </FeatureIcon>
-              <h3>Talk it through</h3>
-              <p>Get grounded, practical support from an always-available AI wellness companion.</p>
-            </article>
-            <article className="feature">
-              <FeatureIcon>
-                <Users size={21} />
-              </FeatureIcon>
-              <h3>Reach the right person</h3>
-              <p>
-                Book a confidential session with a counselor when you want a human conversation.
-              </p>
-            </article>
-          </div>
-        </section>
-
-        {/* Testimonial */}
-        <section className="section" id="support">
-          <div className="quote">
-            <div>
-              <blockquote>
-                "StressShield gave me permission to notice how I was doing—not just push through
-                it."
-              </blockquote>
-              <p>— Elena M., middle school teacher</p>
-            </div>
-            <div
-              className="pulse"
-              style={{ justifySelf: 'end', alignSelf: 'center', width: 90, height: 90 }}
+      <main style={{ position: 'relative', zIndex: 2, paddingTop: '80px' }}>
+        {/* Hero — ambient light */}
+        <section className="snap-section hero">
+          <div className="snap-wrap">
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
             >
-              <Sun size={38} />
+              <div className="hero-meta">
+                <span className="eyebrow">
+                  Hand-crafted for educators <span className="dot" /> Private by design
+                </span>
+              </div>
+              <h1>
+                Space to breathe in a demanding job.
+              </h1>
+              <p className="hero-lede">
+                A calm, private place to notice how you're really doing — and find support
+                before stress becomes burnout.
+              </p>
+              <div className="hero-actions">
+                <Link className="btn" to="/register">
+                  Begin your check-in <ArrowRight size={16} />
+                </Link>
+                <a className="btn light" href="#care">
+                  Explore StressShield
+                </a>
+              </div>
+              <div className="hero-note">From $0 · Built with privacy at its core</div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Feature showcase — product-style */}
+        <section id="care" className="snap-section">
+          <div className="snap-wrap">
+            <div style={{ marginBottom: 40 }}>
+              <span className="eyebrow">
+                Made for your real day <span className="dot" /> Small moments of care
+              </span>
+              <h2 style={{ marginTop: 12, maxWidth: '22ch' }}>
+                Lasting support, designed to fit around the work.
+              </h2>
+            </div>
+            <div className="showcase">
+              {FEATURES.map((f, i) => (
+                <motion.article
+                  key={f.title}
+                  className="showcase-card"
+                  initial={{ opacity: 0, y: 26 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-80px' }}
+                  transition={{ duration: 0.55, delay: i * 0.1 }}
+                >
+                  <div>
+                    <div className="showcase-media">
+                      <img
+                        src={f.image}
+                        alt={f.title}
+                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                      />
+                    </div>
+                    <div className="showcase-label">{f.label}</div>
+                    <h3>{f.title}</h3>
+                    <p>{f.desc}</p>
+                  </div>
+                  <Link className="btn light" to={f.to}>
+                    Learn more <ArrowRight size={14} />
+                  </Link>
+                </motion.article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Quote / craft band */}
+        <section id="support" className="snap-section">
+          <div className="snap-wrap">
+            <div className="quote-band">
+              <motion.blockquote
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                "StressShield gave me permission to notice how I was doing — not just push through it."
+              </motion.blockquote>
+              <div style={{ textAlign: 'right' }}>
+                <span className="pulse" style={{ width: 84, height: 84, marginBottom: 16 }}>
+                  <Sun size={34} />
+                </span>
+                <p>— Elena M., middle school teacher</p>
+              </div>
             </div>
           </div>
         </section>
 
         {/* CTA */}
-        <section className="section" id="pricing">
-          <div className="cta">
-            <span className="eyebrow" style={{ background: '#f6ffc9' }}>
-              A calmer school day starts here
-            </span>
-            <h2>Make space for your wellbeing.</h2>
-            <p>Join a community of educators building more sustainable careers.</p>
-            <Link className="btn" to="/register">
-              Create your free account <ArrowRight size={16} />
-            </Link>
+        <section id="pricing" className="snap-section" style={{ minHeight: 'auto', padding: '80px 0' }}>
+          <div className="snap-wrap">
+            <div className="cta">
+              <span className="eyebrow">
+                <Sparkles size={13} /> A calmer school day starts here
+              </span>
+              <h2>Make space for your wellbeing.</h2>
+              <p>Join a community of educators building more sustainable careers.</p>
+              <Link className="btn" to="/register">
+                Create your free account <ArrowRight size={16} />
+              </Link>
+              <div className="hero-note">
+                <Activity size={12} style={{ verticalAlign: '-2px', marginRight: 4 }} />
+                84% of educators feel more supported
+              </div>
+            </div>
           </div>
         </section>
       </main>
 
       <footer className="footer">
         <Brand />
-        <span>© 2026 StressShield. Made with care for educators.</span>
+        <span>© 2026 StressShield · Made with care for educators</span>
       </footer>
     </div>
   );
 }
+

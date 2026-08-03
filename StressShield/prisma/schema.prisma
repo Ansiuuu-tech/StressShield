@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/client"
 }
 
 datasource db {
@@ -46,6 +47,7 @@ model User {
   moods MoodEntry[]
   messages ChatMessage[]
   notifications Notification[]
+  supportMessages SupportMessage[]
 }
 model Teacher {
   id String @id @default(cuid())
@@ -84,6 +86,16 @@ model MoodEntry {
   mood Mood
   score Int
   note String?
+  aiInsight String?
+  primaryTrigger String?
+  recommendedAction String?
+  aiDetectedMood String?
+  // ML analysis fields
+  sentimentScore Float?
+  emotionalIntensity Int?
+  predictedNextMood String?
+  trendDirection String?
+  burnoutProbability Float?
   createdAt DateTime @default(now())
   @@index([userId, createdAt])
 }
@@ -97,6 +109,8 @@ model Journal {
   emotions String[]
   stressScore Int?
   aiSuggestion String?
+  permaPillar String?
+  emotionalExhaustionLevel String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   @@index([userId, createdAt])
@@ -121,8 +135,22 @@ model ChatMessage {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   role String
   content String
+  detectedEmotion String?
+  stressLevel Int?
+  suggestedAction String?
   createdAt DateTime @default(now())
   @@index([userId, createdAt])
+  feedbacks AiFeedback[]
+}
+model AiFeedback {
+  id String @id @default(cuid())
+  userId String
+  messageId String
+  message ChatMessage @relation(fields: [messageId], references: [id], onDelete: Cascade)
+  helpful Boolean
+  createdAt DateTime @default(now())
+  @@unique([userId, messageId])
+  @@index([messageId])
 }
 model Notification {
   id String @id @default(cuid())
@@ -139,4 +167,18 @@ model Report {
   period String
   data Json
   createdAt DateTime @default(now())
+}
+
+model SupportMessage {
+  id String @id @default(cuid())
+  userId String?
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+  name String
+  email String
+  category String
+  message String
+  status String @default("open")
+  createdAt DateTime @default(now())
+  @@index([userId, createdAt])
+  @@index([status, createdAt])
 }
