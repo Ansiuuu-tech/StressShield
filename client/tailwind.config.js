@@ -4,10 +4,13 @@ export default {
     theme: {
         extend: {
             colors: {
-                paper: '#fafafa',
-                ink: '#262626',
-                muted: '#8a8a8a',
-                border: '#e6e6e6',
+                paper: '#f7f7f5',
+                ink: '#171717',
+                muted: '#737373',
+                border: '#e5e5e2',
+                violet: '#7c3aed',
+                cyan: '#06b6d4',
+                mint: '#10b981',
             },
             fontFamily: {
                 display: ['Geist', 'Inter', 'sans-serif'],
@@ -16,8 +19,10 @@ export default {
             borderRadius: {
                 pill: '999px',
             },
+            boxShadow: {
+                glow: '0 0 0 1px rgba(255,255,255,.08), 0 24px 80px rgba(0,0,0,.12)',
+            },
         },
     },
     plugins: [],
 };
-

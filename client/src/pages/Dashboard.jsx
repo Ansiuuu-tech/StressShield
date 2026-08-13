@@ -54,6 +54,9 @@ export default function Dashboard() {
       { day: 'Wed', mood: 3 },
       { day: 'Thu', mood: 4 },
       { day: 'Fri', mood: 5 },
+      { day: 'Sat', mood: 3 },
+      { day: 'Sun', mood: 5 },
+
     ];
 
   const latestMood = data?.moods?.[0]?.mood

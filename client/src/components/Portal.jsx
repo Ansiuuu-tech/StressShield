@@ -1,4 +1,5 @@
 import { NavLink, useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import {
   Activity,
   BarChart3,
@@ -35,7 +36,12 @@ export default function Portal({ children, title, subtitle }) {
   const go = useNavigate();
 
   return (
-    <div className="portal">
+    <motion.div
+      className="portal"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.35 }}
+    >
       <aside className="sidebar">
         <Brand />
         <div className="menu-label">Wellness space</div>
@@ -101,7 +107,12 @@ export default function Portal({ children, title, subtitle }) {
       </aside>
 
       <main className="portal-main">
-        <div className="topbar">
+        <motion.div
+          className="topbar"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45 }}
+        >
           <div className="page-title">
             <h1>{title}</h1>
             <p>{subtitle}</p>
@@ -114,10 +125,16 @@ export default function Portal({ children, title, subtitle }) {
               Check in <Heart size={15} />
             </button>
           </div>
-        </div>
-        {children}
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.05 }}
+        >
+          {children}
+        </motion.div>
       </main>
-    </div>
+    </motion.div>
   );
 }
 

@@ -73,6 +73,60 @@ export default function Landing() {
               </div>
               <div className="hero-note">From $0 · Built with privacy at its core</div>
             </motion.div>
+
+            <motion.div
+              className="hero-visual"
+              initial={{ opacity: 0, scale: 0.86, rotate: -4 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              transition={{ duration: 1, delay: 0.15, type: 'spring', stiffness: 80, damping: 18 }}
+            >
+              <motion.div
+                className="hero-orbit"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 28, repeat: Infinity, ease: 'linear' }}
+              />
+              <motion.div
+                className="hero-core"
+                animate={{
+                  y: [0, -14, 0],
+                  rotate: [0, 5, -3, 0],
+                  borderRadius: [
+                    '42% 58% 55% 45% / 45% 42% 58% 55%',
+                    '58% 42% 45% 55% / 55% 58% 42% 45%',
+                    '42% 58% 55% 45% / 45% 42% 58% 55%'
+                  ]
+                }}
+                transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
+              />
+              <motion.div
+                className="hero-status-card"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.7, duration: 0.6 }}
+                whileHover={{ y: -6, scale: 1.02 }}
+              >
+                <div className="status-row">
+                  <div>
+                    <div className="eyebrow">Today</div>
+                    <strong style={{ display: 'block', marginTop: 5, fontSize: '1.1rem' }}>
+                      You’re in a good place.
+                    </strong>
+                  </div>
+                  <span className="status-dot" />
+                </div>
+                <div style={{ marginTop: 16, height: 7, borderRadius: 99, background: 'var(--surface-muted)', overflow: 'hidden' }}>
+                  <motion.div
+                    style={{ height: '100%', borderRadius: 99, background: 'linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3))' }}
+                    initial={{ width: 0 }}
+                    animate={{ width: '78%' }}
+                    transition={{ delay: 1, duration: 1.1, ease: 'easeOut' }}
+                  />
+                </div>
+                <small className="muted" style={{ display: 'block', marginTop: 9 }}>
+                  Wellness score · 78
+                </small>
+              </motion.div>
+            </motion.div>
           </div>
         </section>
 
@@ -96,6 +150,7 @@ export default function Landing() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-80px' }}
                   transition={{ duration: 0.55, delay: i * 0.1 }}
+                  whileHover={{ y: -8 }}
                 >
                   <div>
                     <div className="showcase-media">
