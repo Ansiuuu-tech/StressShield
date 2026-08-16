@@ -4,14 +4,13 @@ import Portal from '../components/Portal';
 
 const TEAM_MEMBERS = [
   {
-    name: 'Dr. Maya Chen',
+    name: 'Anshu Gaur',
     role: 'Founder & CEO',
-    bio: 'Former high school teacher turned wellbeing advocate. PhD in Educational Psychology.',
+    bio: 'Btech Cse student with passion in Web-dev, Ai and other technologies.',
     icon: GraduationCap,
     color: '#f472b6',
-    initials: 'MC',
-    TODO: 'C:\Users\rajka\Downloads\Lotus-Tmple-Photo-by-Arpan-Das.jpg',
-    // photo: 'C:\Users\rajka\Downloads\Lotus-Tmple-Photo-by-Arpan-Das.jpg',
+    initials: 'AG',
+    photo: 'C:/Users/anshu/Downloads/WhatsApp Image 2026-08-16 at 11.12.21 AM.jpeg',
     socials: [
       { icon: Linkedin, href: '#' },
       { icon: Twitter, href: '#' },
@@ -19,12 +18,12 @@ const TEAM_MEMBERS = [
     ],
   },
   {
-    name: 'Dr. James Okonkwo',
-    role: 'Clinical Director',
-    bio: 'Licensed counselor with 15+ years supporting educators. Specializes in burnout prevention.',
+    name: 'Ayansh Dubey',
+    role: 'Co-founder & ML Engineer',
+    bio: 'Machine learning engineer with experience in developing AI-powered solutions.',
     icon: Stethoscope,
     color: '#60a5fa',
-    initials: 'JO',
+    initials: 'AD',
     // TODO: replace with real photo
     // photo: '/images/team/james-okonkwo.jpg',
     socials: [
@@ -33,12 +32,12 @@ const TEAM_MEMBERS = [
     ],
   },
   {
-    name: 'Sarah Mitchell',
-    role: 'Head of Product',
-    bio: 'Built products at Calm and Headspace. Obsessed with making wellbeing tools that actually fit into a teacher\'s day.',
+    name: 'Bibhash',
+    role: 'Co-Founder & UI/UX designer',
+    bio: 'UI/UX designer and full stack web-developer with experience in designing user-friendly interfaces.',
     icon: Palette,
     color: '#a78bfa',
-    initials: 'SM',
+    initials: 'BK',
     // TODO: replace with real photo
     // photo: '/images/team/sarah-mitchell.jpg',
     socials: [
@@ -47,12 +46,12 @@ const TEAM_MEMBERS = [
     ],
   },
   {
-    name: 'Marcus Rivera',
-    role: 'Lead Engineer',
-    bio: 'Full-stack developer passionate about privacy-first tech. Former ed-tech startup CTO.',
+    name: 'Ashish Tiwari',
+    role: 'Co-founder & Backend Engineer',
+    bio: 'Backend engineer with experience in developing backend systems.',
     icon: Brain,
     color: '#4ade80',
-    initials: 'MR',
+    initials: 'AT',
     // TODO: replace with real photo
     // photo: '/images/team/marcus-rivera.jpg',
     socials: [
