@@ -33,8 +33,8 @@ const TEAM_MEMBERS = [
   },
   {
     name: 'Bibhash',
-    role: 'Co-Founder & UI/UX designer',
-    bio: 'UI/UX designer and full stack web-developer with experience in designing user-friendly interfaces.',
+    role: 'Co-Founder & Frontend Engineer',
+    bio: 'Frontend engineer with experience in building responsive and accessible web applications.',
     icon: Palette,
     color: '#a78bfa',
     initials: 'BK',
