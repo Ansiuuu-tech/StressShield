@@ -1,6 +1,13 @@
 import { motion } from 'framer-motion';
 import { Shield, Heart, Brain, Sparkles, Linkedin, Twitter, Mail, GraduationCap, Stethoscope, Palette } from 'lucide-react';
 import Portal from '../components/Portal';
+import AshishPhoto from "../../Team_Img/Ashish_Project.jpeg";
+import AnshuPhoto from "../../Team_Img/Anshu_Project.jpeg";
+import AyanshPhoto from "../../Team_Img/Ayansh_Project.jpeg";
+import BibhashPhoto from "../../Team_Img/Bibhash.png";
+
+
+
 
 const TEAM_MEMBERS = [
   {
@@ -10,9 +17,9 @@ const TEAM_MEMBERS = [
     icon: GraduationCap,
     color: '#f472b6',
     initials: 'AG',
-    photo: 'C:/Users/anshu/Downloads/WhatsApp Image 2026-08-16 at 11.12.21 AM.jpeg',
+    photo: AnshuPhoto,
     socials: [
-      { icon: Linkedin, href: '#' },
+      { icon: Linkedin, href: 'https://www.linkedin.com/in/anshu-gaur-302774332/' },
       { icon: Twitter, href: '#' },
       { icon: Mail, href: '#' },
     ],
@@ -21,13 +28,13 @@ const TEAM_MEMBERS = [
     name: 'Ayansh Dubey',
     role: 'Co-founder & ML Engineer',
     bio: 'Machine learning engineer with experience in developing AI-powered solutions.',
-    icon: Stethoscope,
+    icon: GraduationCap,
     color: '#60a5fa',
     initials: 'AD',
     // TODO: replace with real photo
-    // photo: '/images/team/james-okonkwo.jpg',
+    photo: AyanshPhoto,
     socials: [
-      { icon: Linkedin, href: '#' },
+      { icon: Linkedin, href: 'https://www.linkedin.com/in/ayansh-dubey-815788324/' },
       { icon: Mail, href: '#' },
     ],
   },
@@ -35,13 +42,13 @@ const TEAM_MEMBERS = [
     name: 'Bibhash',
     role: 'Co-Founder & UI/UX designer',
     bio: 'UI/UX designer and full stack web-developer with experience in designing user-friendly interfaces.',
-    icon: Palette,
+    icon: GraduationCap,
     color: '#a78bfa',
     initials: 'BK',
     // TODO: replace with real photo
-    // photo: '/images/team/sarah-mitchell.jpg',
+    photo: BibhashPhoto,
     socials: [
-      { icon: Linkedin, href: '#' },
+      { icon: Linkedin, href: 'https://www.linkedin.com/in/bibhash-02a846329/' },
       { icon: Twitter, href: '#' },
     ],
   },
@@ -49,18 +56,20 @@ const TEAM_MEMBERS = [
     name: 'Ashish Tiwari',
     role: 'Co-founder & Backend Engineer',
     bio: 'Backend engineer with experience in developing backend systems.',
-    icon: Brain,
+    icon: GraduationCap,
     color: '#4ade80',
     initials: 'AT',
     // TODO: replace with real photo
-    // photo: '/images/team/marcus-rivera.jpg',
+    photo: AshishPhoto,
     socials: [
-      { icon: Linkedin, href: '#' },
+      { icon: Linkedin, href: 'https://www.linkedin.com/in/ashish-tiwari-48845932a/' },
       { icon: Twitter, href: '#' },
       { icon: Mail, href: '#' },
     ],
   },
 ];
+
+
 
 function TeamCard({ member, index }) {
   const Icon = member.icon;
@@ -93,26 +102,43 @@ function TeamCard({ member, index }) {
         position: 'relative',
         overflow: 'hidden',
       }}>
+
+        {/* for photo */}
+        
         {/* Placeholder avatar with initials */}
-        <div style={{
-          width: 120,
-          height: 120,
-          borderRadius: '50%',
-          background: member.color,
-          color: '#1a1a1a',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontFamily: 'Fraunces, serif',
-          fontWeight: 700,
-          fontSize: '2.5rem',
-          letterSpacing: '-0.02em',
-          boxShadow: '0 8px 32px ' + member.color + '44',
-          transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-          transform: hovered ? 'scale(1.05)' : 'scale(1)',
-        }}>
-          {member.initials}
-        </div>
+                {member.photo ? (
+          <img
+            src={member.photo}
+            alt={member.name}
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              transition: 'transform 0.3s ease',
+              transform: hovered ? 'scale(1.05)' : 'scale(1)',
+            }}
+          />
+        ) : (
+          <div style={{
+            width: 120,
+            height: 120,
+            borderRadius: '50%',
+            background: member.color,
+            color: '#1a1a1a',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontFamily: 'Fraunces, serif',
+            fontWeight: 700,
+            fontSize: '2.5rem',
+            letterSpacing: '-0.02em',
+            boxShadow: '0 8px 32px ' + member.color + '44',
+            transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+            transform: hovered ? 'scale(1.05)' : 'scale(1)',
+          }}>
+            {member.initials}
+          </div>
+        )}
         {/* Subtle duotone overlay effect */}
         <div style={{
           position: 'absolute',

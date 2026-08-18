@@ -20,6 +20,7 @@ router.get('/counselors', async (req, res, next) => {
   }
 });
 
+
 router.get('/', async (req, res, next) => {
   try {
     const teacher = await prisma.teacher.findUnique({ where: { userId: req.auth.sub } });
