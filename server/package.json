@@ -7,7 +7,7 @@
     "dev": "node --watch src/server.js",
     "start": "node src/server.js",
     "db:generate": "prisma generate --schema ../prisma/schema.prisma",
-    "db:migrate": "prisma migrate dev --schema ../prisma/schema.prisma",
+    "db:migrate": "prisma migrate deploy --schema ../prisma/schema.prisma",
     "db:seed": "node ../prisma/seed.js"
   },
   "dependencies": {
